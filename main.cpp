@@ -27,7 +27,7 @@ public:
         name = rhs.name;
         age = rhs.age;
     }
-    explicit Cat(std::string name):name(std::move(name)){ //TODO: What does std::move do here?
+    explicit Cat(std::string name):name(std::move(name)){ //TODO: What does std::move do here? What does explicit do?
         std::cout << "In the parameterized ctor" << std::endl;
     }
     Cat(std::string name, int age):name(std::move(name)), age(age){
