@@ -2,24 +2,39 @@
 #include <utility>
 #include <vector>
 
+/**
+ * Look through the code below for lines marked TODO. These
+ * are lines of code that I would like you to investigate to
+ * understand what they are doing. I would
+ * suggest making notes on what you find so that you will be
+ * ready to answer questions on a quiz or exam.
+ *
+ * Study the constructors and run the code as we did in class
+ * to ensure that you understand why a constructor is called
+ * in each case.
+ */
+
+
 class Cat {
     std::string name;
-    int age{}; // what the heck does this do?
+    int age{}; // TODO: What do the {} do here?
 public:
-    Cat():age(0){
+    Cat(){
         std::cout << "Default ctor" << std::endl;
     }
     Cat(const Cat& rhs){
-        std::cout << "Copy ctor" << std::endl;
+        std::cout << "Copy ctor for " << rhs.name << std::endl;
+        name = rhs.name;
+        age = rhs.age;
     }
-    explicit Cat(std::string name):name(std::move(name)){ // What is all this?
+    explicit Cat(std::string name):name(std::move(name)){ //TODO: What does std::move do here?
         std::cout << "In the parameterized ctor" << std::endl;
     }
     Cat(std::string name, int age):name(std::move(name)), age(age){
         std::cout << "In the parameterized ctor with both params" << std::endl;
     }
     std::string toString(){
-        return "Name: " + name + ", Age: " + std::to_string(age);
+        return "Name: " + name + ", Age: " + std::to_string(age); //TODO: what is std::to_string?
 
     }
 };
@@ -31,15 +46,15 @@ void basicVector();
 void vectorWithObjects();
 
 int main() {
-    basicVector();
-    //vectorWithObjects();
+    //basicVector();
+    vectorWithObjects();
 }
 
 void vectorWithObjects() {
-    std::vector<Cat> cats;
+    std::vector<Cat> cats(3);
     //cats.emplace_back(Cat());
-    cats.emplace_back("Tom");
     cats.emplace_back("Thomas",12);
+    cats.emplace_back("Tom");
     for(Cat& cat: cats){
         std::cout << cat.toString() << std::endl;
 
@@ -53,7 +68,7 @@ void basicVector() {
     }
 
     std::vector<int> corbin {1,2,3,4,5}; // direct initialization
-    corbin.at(10) = 100; // no can do
+    //corbin.at(10) = 100; // no can do
     for(int n: corbin){
         std::cout << n << std::endl;
     }
